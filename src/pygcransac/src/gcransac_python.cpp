@@ -98,7 +98,7 @@ int findLine2D_(
 		cv::Mat empty_point_matrix(0, 2, CV_64F);
 
 		neighborhood_graph = std::unique_ptr<AbstractNeighborhood>(
-			new neighborhood::GridNeighborhoodGraph<4>(&empty_point_matrix, // The input points
+			new neighborhood::GridNeighborhoodGraph<2>(&empty_point_matrix, // The input points
 			{ 0, // The cell size along axis X
 				0 }, // The cell size along axis Y
 			1)); // The cell number along every axis
