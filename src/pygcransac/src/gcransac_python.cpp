@@ -106,7 +106,7 @@ int findLine2D_(
 	{
 		if (neighborhood_id == 0)
 			neighborhood_graph = std::unique_ptr<AbstractNeighborhood>(
-				new neighborhood::GridNeighborhoodGraph<4>(&point_matrix, // The input points
+				new neighborhood::GridNeighborhoodGraph<2>(&point_matrix, // The input points
 				{ w / static_cast<double>(cell_number_in_neighborhood_graph_), // The cell size along axis X
 					h / static_cast<double>(cell_number_in_neighborhood_graph_) }, // The cell size along axis Y
 				cell_number_in_neighborhood_graph_)); // The cell number along every axis
@@ -146,7 +146,7 @@ int findLine2D_(
 	else if (sampler_id == 1)  // Initializing a PROSAC sampler. This requires the points to be ordered according to the quality.
 		main_sampler = std::unique_ptr<AbstractSampler>(new sampler::ProsacSampler(&point_matrix, estimator.sampleSize()));
 	else if (sampler_id == 2) // Initializing a Progressive NAPSAC sampler
-		main_sampler = std::unique_ptr<AbstractSampler>(new sampler::ProgressiveNapsacSampler<4>(&point_matrix,
+		main_sampler = std::unique_ptr<AbstractSampler>(new sampler::ProgressiveNapsacSampler<2>(&point_matrix,
 			{ 16, 8, 4, 2 },	// The layer of grids. The cells of the finest grid are of dimension 
 								// (source_image_width / 16) * (source_image_height / 16)  * (destination_image_width / 16)  (destination_image_height / 16), etc.
 			estimator.sampleSize(), // The size of a minimal sample
